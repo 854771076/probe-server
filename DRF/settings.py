@@ -40,6 +40,7 @@ if DEBUG==False:
     },
 
     }
+    EMAIL_USE_TLS = True
     EMAIL_PORT = 587 # SMTP端口号
     SECURE_HSTS_SECONDS = 3600
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -62,6 +63,7 @@ if DEBUG==False:
     X_FRAME_OPTIONS = 'DENY'
     CORS_ALLOW_ALL_ORIGINS = False
 else:
+    
     CORS_ALLOW_ALL_ORIGINS = True
     EMAIL_PORT =587
     DATABASES = {

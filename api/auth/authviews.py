@@ -303,7 +303,7 @@ class SignupView(APIView):
         
         Serializer = UserRegisterSerializer(data=request.data)
         if Serializer.is_valid():
-            Serializer.save()
+            me=Serializer.save()
             Inviter=Serializer.validated_data.get('Inviter')
             if Inviter:
                 u=user.objects.get(email=Inviter)
@@ -314,7 +314,7 @@ class SignupView(APIView):
                     if u2.Inviter:
                         u3=user.objects.get(email=u2.Inviter)
                         VipPoints.objects.create(user=u3,source='三级邀请用户',points=1)
-            VipPoints.objects.create(user=request.user,points=10,source='注册奖励')
+            VipPoints.objects.create(user=me,points=10,source='注册奖励')
             return Response({'code': 200, 'msg': "注册成功"})
             
         else:
